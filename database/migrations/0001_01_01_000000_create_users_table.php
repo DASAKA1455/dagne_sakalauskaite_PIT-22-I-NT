@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Users table
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -21,15 +20,11 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-
-        // Password reset tokens table
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
-
-        // Sessions table
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();
@@ -38,32 +33,9 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
-
-        // Conferences table
-        Schema::create('conferences', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->date('date');
-            $table->timestamps();
-        });
-
-        // Pivot table for user conference sign-ins
-        Schema::create('conference_user', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('conference_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
-        });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('conference_user');
-        Schema::dropIfExists('conferences');
         Schema::dropIfExists('sessions');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('users');

@@ -7,16 +7,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-// Public conference routes (no auth required)
-
 Route::get('/', [ConferenceController::class, 'index']);
 Route::get('conferences/{conference}', [ConferenceController::class, 'show'])->name('conferences.show');
 Route::get('/test', function () {
     return view('test');
 });
-// Protected conference routes (sign in requires auth)
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
+    
     Route::post('conferences/{conference}/signin', [ConferenceController::class, 'signin'])->name('conferences.signin');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -24,8 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware('verified')->name('dashboard');
+        $conferences = auth()->user()->conferences()->get();
+        return view('dashboard', compact('conferences'));
+    })->name('dashboard');
 });
 
 require __DIR__.'/auth.php';

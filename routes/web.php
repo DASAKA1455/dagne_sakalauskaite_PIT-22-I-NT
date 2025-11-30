@@ -3,11 +3,20 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ConferenceController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminConferenceController;
+use App\Http\Controllers\Admin\UserController;
 
-// Homepage – show conferences
+
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::post('users/{user}/assign-role', [UserController::class, 'assignRole'])->name('users.assignRole');
+});
 Route::get('/', [ConferenceController::class, 'index'])->name('home');
 
-// Language switcher
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/conferences/create', [AdminConferenceController::class, 'create'])->name('conferences.create');
+    Route::post('/conferences', [AdminConferenceController::class, 'store'])->name('conferences.store');
+});
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'lt'])) {
         session(['locale' => $locale]);

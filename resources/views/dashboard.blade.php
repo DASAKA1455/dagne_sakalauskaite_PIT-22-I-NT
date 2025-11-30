@@ -23,34 +23,36 @@
         <a href="{{ route('admin.conferences.create') }}" class="...">Create Conference</a>
     </div>
 @else
-    <p class="text-red-500">You cannot manage conferences</p>
 @endif
 
         <h2 class="text-2xl font-semibold mb-4 text-primary">{{ __('Your information') }}</h2>
         <div class="space-y-2 text-black">
             <p><span class="font-semibold text-black">{{ __('Name:') }}</span> {{ auth()->user()->name }}</p>
             <p><span class="font-semibold text-black">{{ __('Email:') }}</span> {{ auth()->user()->email }}</p>
-            <p>
-                <span class="font-semibold text-surface">{{ __('Role:') }}</span>
-                <span class="italic text-surface">
-                    {{ implode(', ', auth()->user()->getRoleNames()->toArray()) }}
-                </span>
-            </p>
+<p>
+    <span class="font-semibold text-surface">{{ __('Role:') }}</span>
+    <span class="italic text-surface">
+        {{ implode(', ', auth()->user()->getRoleNames()->map(fn($role) => __($role))->toArray()) }}
+    </span>
+</p>
+
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-            <a href="{{ route('profile.edit') }}#email"
-               class="text-center bg-accent text-white px-4 py-3 rounded-lg shadow hover:bg-primary transition">
-                {{ __('Change email') }}
-            </a>
-            <a href="{{ route('profile.edit') }}#password"
-               class="text-center bg-accent text-white px-4 py-3 rounded-lg shadow hover:bg-primary transition">
-               {{ __('Change password') }}
-            </a>
-        </div>
+       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+    <a href="{{ route('profile.edit') }}#email"
+       class="text-center bg-accent text-white px-4 py-3 rounded-lg shadow 
+              hover:bg-primary transition duration-300 ease-in-out scroll-smooth">
+        {{ __('Change email') }}
+    </a>
+    <a href="{{ route('profile.edit') }}#password"
+       class="text-center bg-accent text-white px-4 py-3 rounded-lg shadow 
+              hover:bg-primary transition duration-300 ease-in-out scroll-smooth">
+       {{ __('Change password') }}
+    </a>
+</div>
     </div>
 
-    <h2 class="text-2xl font-semibold mb-4 text-white">{{ __('Your conferences') }}</h2>
+    <h2 id="my-conferences" class="text-2xl font-semibold mb-4 text-white">{{ __('Your conferences') }}</h2>
     @if ($conferences->isEmpty())
         <p class="mb-6 text-textSecondary"></p>
     @else

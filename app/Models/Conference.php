@@ -14,5 +14,6 @@ class Conference extends Model
         'date',
         'location',
         'description',
+        'thumbnail',
     ];
 }

@@ -41,11 +41,13 @@
            "Go back":"Grįžti į sąrašą",
              "Register":"Registruotis",
           "Cancel":"Grįžti",
+            "Hello,":"Sveiki, ",
          "Details":"Išsamiau",
           "My conferences":"Mano konferencijos",
           "Create conference":"Pridėti naują",
            "Edit conference":"Redagavimas",
                   "Login to register":"Prisijunkite norėdami registruotis",
-                  "Successfully logged in!":"Sėkmingai prisijungėte"
+                  "Successfully logged in!":"Sėkmingai prisijungėte",
+            "Already registered":"Jau užsiregistravote"
 
 }

@@ -64,48 +64,67 @@
 }
 
   </script>
-
-  <header class="bg-surface text-white p-4 shadow">
+<header class="bg-surface text-white p-4 shadow">
     <div class="container mx-auto flex justify-between items-center">
-        <!-- Logo + Home -->
+
         <div class="flex items-center space-x-6">
             <h1 class="text-2xl font-bold">Konferencijos.</h1>
+
             <a href="{{ url('/') }}"
                class="relative font-semibold text-white
                       after:block after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full">
                 {{ __('Home') }}
             </a>
-        <a href="{{ route('dashboard') }}#my-conferences"
-          class="relative font-semibold text-white
-                  after:block after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full">
-            {{ __('My conferences') }}
-        </a>
 
+            <a href="{{ route('dashboard') }}#my-conferences"
+               class="relative font-semibold text-white
+                      after:block after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full">
+                {{ __('My conferences') }}
+            </a>
         </div>
-        <nav class="flex items-center space-x-4">
-          <div class="flex items-center space-x-2">
-   <div class="flex items-center space-x-3 ml-4">
-    <a href="{{ route('lang.switch', 'en') }}" class="hover:underline">EN</a>
-    <a href="{{ route('lang.switch', 'lt') }}" class="hover:underline">LT</a>
-</div>
 
+        <nav class="flex items-center space-x-4">
             @auth
-            <a href="{{ route('dashboard') }}"
-                  class="flex items-center gap-2 hover:underline">
-                 <img src="{{ asset('icons/user.svg') }}" class="w-5 h-5">
-                  </a>
+                <span class="mr-4 text-sm text-gray-200">
+                    {{ __('Hello,') }} <strong>{{ auth()->user()->name }}</strong>
+                </span>
+            @endauth
+
+            {{-- LANGUAGE SWITCHER --}}
+            <div class="flex items-center space-x-3">
+                <a href="{{ route('lang.switch', 'en') }}"
+                   class="px-2 py-1 rounded 
+                          {{ app()->getLocale() === 'en' ? 'bg-white text-black font-semibold' : 'hover:underline' }}">
+                    EN
+                </a>
+
+                <a href="{{ route('lang.switch', 'lt') }}"
+                   class="px-2 py-1 rounded 
+                          {{ app()->getLocale() === 'lt' ? 'bg-white text-black font-semibold' : 'hover:underline' }}">
+                    LT
+                </a>
+            </div>
+            @auth
+                <a href="{{ route('dashboard') }}" class="flex items-center gap-2 hover:underline">
+                    <img src="{{ asset('icons/user.svg') }}" class="w-5 h-5">
+                </a>
+
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                   class="underline hover:text-gray-300">{{ __('Log out') }}</a>
+                   class="underline hover:text-gray-300">
+                    {{ __('Log out') }}
+                </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
+
             @else
-                <a href="{{ route('login') }}" class="hover:underline">   {{ __('Login') }}</a>
-                <a href="{{ route('register') }}" class="hover:underline">   {{ __('Register') }}</a>
+                <a href="{{ route('login') }}" class="hover:underline">{{ __('Login') }}</a>
+                <a href="{{ route('register') }}" class="hover:underline">{{ __('Register') }}</a>
             @endauth
+
         </nav>
-        
     </div>
 </header>
+
 
 
     {{-- Main content --}}

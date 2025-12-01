@@ -28,11 +28,15 @@
         @foreach($conferences as $conference)
             <div class="bg-white shadow-lg rounded-lg p-4 flex flex-col justify-between hover:shadow-2xl transition">
                 <div class="mb-4">
-                    @if($conference->thumbnail)
-                        <img src="{{ asset('storage/' . $conference->thumbnail) }}" alt="{{ $conference->title }}"
-                             class="h-60 w-full object-cover rounded mb-3">
+                 @if($conference->thumbnail)
+                        <a href="{{ route('conferences.show', $conference->id) }}">
+                            <img src="{{ asset('storage/' . $conference->thumbnail) }}" alt="{{ $conference->title }}"
+                                class="h-60 w-full object-cover rounded mb-3 hover:opacity-65 transition">
+                        </a>
                     @else
-                        <div class="h-60 w-full bg-gray-200 rounded mb-3"></div>
+                        <a href="{{ route('conferences.show', $conference->id) }}">
+                            <div class="h-60 w-full bg-gray-200 rounded mb-3 hover:opacity-90 transition"></div>
+                        </a>
                     @endif
 
                     <h3 class="text-lg font-semibold text-gray-800 mb-1">{{ $conference->title }}</h3>

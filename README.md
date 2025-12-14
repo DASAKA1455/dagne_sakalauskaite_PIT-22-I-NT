@@ -1,10 +1,10 @@
 Trūksta:
-- klientų sąrašo;
+- ~~klientų sąrašo;~~ SD2✅
 - lektorių įvedimo;
 - registracijos atšaukimo;
-- darbuotojo posistemio;
-- sistemos admin išplėstinio naudotojų valdymo;
-- konferencijos/naudotojų button'ai sysadmin;
+- ~~darbuotojo posistemio;~~ SD2✅
+- ~~sistemos admin išplėstinio naudotojų valdymo;~~ SD2✅
+- ~~konferencijos/naudotojų button'ai sysadmin;~~  SD2✅
 
 
 Naudojami:

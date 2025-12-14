@@ -12,7 +12,7 @@ class DashboardController extends Controller
     $user = Auth::user();
 
     $conferences = $user->conferences()
-        ->orderBy('date', 'asc') // sort by ascending date
+        ->orderBy('date', 'asc')
         ->get();
 
     return view('dashboard', compact('conferences'));

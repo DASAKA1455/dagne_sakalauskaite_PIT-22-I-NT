@@ -43,8 +43,8 @@
              class="w-full h-80 object-cover rounded mb-6">
     @endif
 
-    <p class="text-lg mb-2"><strong>Date:</strong> {{ \Carbon\Carbon::parse($conference->date)->format('F j, Y') }}</p>
-    <p class="text-lg mb-2"><strong>Location:</strong> {{ $conference->location ?? 'TBA' }}</p>
+    <p class="text-lg mb-2"><strong>{{ __('Date') }}: </strong> {{ \Carbon\Carbon::parse($conference->date)->format('F j, Y') }}</p>
+    <p class="text-lg mb-2"><strong>{{ __('Location') }}: </strong> {{ $conference->location ?? 'TBA' }}</p>
 
     @if($conference->description)
         <p class="text-gray-700 mt-4">{{ $conference->description }}</p>

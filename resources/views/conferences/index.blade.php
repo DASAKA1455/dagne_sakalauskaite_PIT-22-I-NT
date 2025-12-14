@@ -9,7 +9,7 @@
 </h2>
 
 @auth
-    @if(auth()->user()->hasRole('Admin'))
+    @if(auth()->user()->hasAnyRole(['Admin', 'Employee']))
         <div class="text-right mb-6">
             <a href="{{ route('admin.conferences.create') }}"
                class="bg-accent text-white px-6 py-3 rounded hover:bg-primary transition m-2">
@@ -51,6 +51,16 @@
                             {{ __('View more') }}
                         </a>
                     </div>
+                    @auth
+                        @if(auth()->user()->hasRole('Employee'))
+                            <div class="flex justify-end mt-2">
+                                <a href="{{ route('employee.conferences.users', $conference->id) }}"
+                                class="bg-accent text-white px-3 py-1 rounded hover:bg-primary transition">
+                                    {{ __('Show list') }}
+                                </a>
+                            </div>
+                        @endif
+                    @endauth
 
                     @auth
                         @if(auth()->user()->hasRole('Admin'))

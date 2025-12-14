@@ -25,6 +25,18 @@ class ConferenceController extends Controller
 
     return view('conferences.show', compact('conference', 'isRegistered'));
     }
+    public function showRegisteredUsers(Conference $conference)
+    {
+        $user = auth()->user();
+
+        if (!$user->hasRole('Employee')) {
+            abort(403);
+        }
+
+        $users = $conference->users()->get(); // all users registered for this conference
+
+        return view('employee.conferences.users', compact('conference', 'users'));
+    }
 
     public function showSigninForm(Conference $conference)
     {

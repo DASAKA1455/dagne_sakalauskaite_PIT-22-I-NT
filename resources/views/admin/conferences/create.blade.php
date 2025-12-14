@@ -54,7 +54,8 @@
         </div>
 
         <div class="flex justify-end gap-4">
-            <a href="{{ route('admin.conferences.index') }}" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">{{ __('Cancel') }}</a>
+           <a href="{{ auth()->user()->hasRole('Employee') ? route('dashboard') : route('admin.conferences.index') }}" 
+   class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">{{ __('Cancel') }}</a>
             <button type="submit" class="px-4 py-2 bg-accent text-white rounded hover:bg-primary">{{ __('Create conference') }}</button>
         </div>
     </form>

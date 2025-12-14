@@ -1,31 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+@vite('resources/css/app.css')
 
     <meta charset="UTF-8" />
     <title>@yield('title', 'Conference App')</title>
  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          primary: '#000000ff',      
-          secondary: '#adaba2ff',       
-          accent: '#3f3949ff',  
-          background: '#ffffffff', 
-          surface: '#3f3949ff',       
-          textPrimary: '#e0e0e0',    
-          textSecondary: '#a0a0a0', 
-        },
-        fontFamily: {
-          sans: ['Orbitron', 'ui-sans-serif', 'system-ui'],
-        },
-      },
-    },
-  }
-</script>
 <body class="bg-gray-100 min-h-screen flex flex-col">
 
  <div
@@ -81,6 +61,15 @@
                       after:block after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full">
                 {{ __('My conferences') }}
             </a>
+        @auth
+    @if(auth()->user()->hasRole('Admin'))
+        <a href="{{ route('admin.conferences.index') }}"
+           class="relative font-semibold text-white
+                  after:block after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full">
+            {{ __('All conferences') }}
+        </a>
+    @endif
+@endauth
         </div>
 
         <nav class="flex items-center space-x-4">

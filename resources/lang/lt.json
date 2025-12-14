@@ -48,6 +48,18 @@
            "Edit conference":"Redagavimas",
                   "Login to register":"Prisijunkite norėdami registruotis",
                   "Successfully logged in!":"Sėkmingai prisijungėte",
-            "Already registered":"Jau užsiregistravote"
+            "Already registered":"Jau užsiregistravote",
+            "Registered users for":"Užsiregistravę į: ",
+            "Show list":"Rodyti sąrašą",
+            "Current password":"Dabartinis slaptažodis",
+            "New password":"Naujas slaptažodis",
+            "Confirm password":"Pakartokite slaptažodį",
+            "Update email":"Atnaujinti el. paštą",
+            "Update password":"Atnaujinti slaptažodį",
+            "Edit profile":"Mano profilis",
+            "Password updated successfully.":"Slaptažodis sėkmingai atnaujintas.",
+            "Email updated successfully.":"El. paštas sėkmingai atnaujintas.",
+            "Actions":"Veiksmai"
+            
 
 }

@@ -26,7 +26,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
+    public function isAdmin()
+    {
+        return $this->role === 'Admin';
+    }
     public function conferences()
     {
         return $this->belongsToMany(Conference::class);

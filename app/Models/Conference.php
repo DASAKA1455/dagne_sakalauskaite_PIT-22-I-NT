@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User; 
 
 class Conference extends Model
 {
@@ -16,4 +17,8 @@ class Conference extends Model
         'description',
         'thumbnail',
     ];
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'conference_user')->withTimestamps();
+    }
 }
